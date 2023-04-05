@@ -1,0 +1,52 @@
+
+<html enctype>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+	<body>
+    	<div class="header">
+            <div class="menu">
+                <div>Магазин</div>
+                <div>Каталог</div>
+                <div>Корзина</div>
+                <div>Отзывы</div>
+            </div>
+        </div>
+        <div class="content">
+            <form method="">
+                <input type="text" name="name" value="" placeholder="Введите ФИО"><br><br>
+                <input type="email" name="email" value="" placeholder="Введите e-mail"><br><br>
+                Сколько Вам лет ?<br>
+                <select name="age">
+                    <option value=""></option>
+                    <option value="1-17">1-17</option>
+                    <option value="18-65" selected>18-65</option>
+                    <option value="66+">66+</option>
+                </select><br><br>
+                Какие языки Вы знаете ?<br>
+                <select name="language" size="4" multiple>
+                    <option value="english">Английский</option>
+                    <option value="german" selected>Немецкий</option>
+                    <option value="franch">Французкий</option>
+                    <option value="other">Другие</option>
+                </select><br><br>
+                На данный момент трудоустроены ли Вы:<br>
+                <input type="radio" name='job' value="yes" >Да<br>
+                <input type="radio" name='job' value="no" >Нет<br><br>
+                Какие языки программирования Вы знаете:<br>
+                <input type="checkbox" name="prog_lang" value="C++">C++<br>
+                <input type="checkbox" name="prog_lang" value="Python">Python<br>
+                <input type="checkbox" name="prog_lang" value="SQL">SQL<br>
+                <input type="checkbox" name="prog_lang" value="JavaScript">JavaScript<br>
+
+                <textarea name="textarea" cols="40" rows="5"> Пример ввода в текстовое поле
+
+                </textarea><br>
+                <button>Отправить форму</button>
+            </form>
+        </div>
+        <div class="footer">Подвал</div>
+    </body>
+    
+</html>
