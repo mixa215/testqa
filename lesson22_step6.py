@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 import time
 import math
 
@@ -9,34 +10,28 @@ def calc(x):
 
 
 try: 
-    link = "http://suninjuly.github.io/get_attribute.html"
+    link = "http://suninjuly.github.io/execute_script.html"
     browser = webdriver.Chrome()
     browser.get(link)
 
-    # Ваш код, который заполняет обязательные поля
-    option1 = browser.find_element(By.ID, 'robotCheckbox')
-    option1.click()
-    
-    option2 = browser.find_element(By.ID, 'robotsRule')
-    option2.click()
 
-    img1 = browser.find_element(By.ID, 'treasure')
-    img1_valuex = img1.get_attribute("valuex")
-    vluex = calc(img1_valuex)
+    # Ваш код, который заполняет обязательные поля
+    span1 = browser.find_element(By.ID, 'input_value')
+    span1 = span1.text
+    
+    x = calc(int(span1))
+    print(x)
 
     input1 = browser.find_element(By.ID, 'answer')
-    input1.send_keys(vluex)
+    input1.send_keys(x)
 
-    # people_radio = browser.find_element(By.ID, "peopleRule")
+    option1 = browser.find_element(By.ID, 'robotCheckbox')
+    option1.click()
 
-    # people_checked = people_radio.get_attribute("checked")
-    # print("value of people radio: ", people_checked)
-    # assert people_checked is not None, "People radio is not selected by default"
-
-    # robots_radio = browser.find_element(By.ID, "robotsRule")
-    # robots_checked = robots_radio.get_attribute("checked")
-    # assert robots_checked is None
-
+    option2 = browser.find_element(By.ID, "robotsRule")
+    browser.execute_script("return arguments[0].scrollIntoView(true);", option2)
+    option2.click()
+    
 
     button = browser.find_element(By.CSS_SELECTOR, "button.btn")
     button.click()
