@@ -1,10 +1,11 @@
-s = 'My Name is Julia'
+m, p, n = 10, 50, 6
+print('1 ', float(m))
+for i in range(2, n+1):
+    m += m * 0.5
+    print(i, m) 
+    
+    
 
-if 'Name' in s:
-    print('Substring found')
 
-index = s.find('is')
-if index != -1:
-    print(f'Substring found at index {index}')
-else:
-    print(index)
+
+
