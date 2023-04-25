@@ -1,7 +1,6 @@
-a = ['Skyrim', 'GTA', 'Sims', 'стоп', 'Mafia']
+a = ['Skyrim', 'GTA', 'Mafia', 'хватит', 'Battlefield']
 i = 0
-while i < len(a):
-    if a[i] == 'стоп' or a[i] == 'хватит' or a[i] == 'достаточно':
-        break
+while a[i]!='стоп' and a[i]!='хватит' and a[i]!='достаточно':   
     i+=1
 print(i)
+    
