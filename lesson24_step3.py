@@ -2,7 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 browser = webdriver.Chrome()
-browser.get("http://suninjuly.github.io/wait1.html")
+# говорим WebDriver ждать все элементы в течение 5 секунд
+browser.implicitly_wait(5)
+
+browser.get("http://suninjuly.github.io/wait2.html")
 
 button = browser.find_element(By.ID, "verify")
 button.click()

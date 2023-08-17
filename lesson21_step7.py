@@ -1,47 +1,38 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
-import math
+'''Подлкючаем библиотеки'''
+import time # Подключаем библиотеку для работы веб-драйвера
+from selenium import webdriver # Подключаем библиотеку By для поиска эллементов (input1 = browser.find_element(By.XPATH, ''))
+from selenium.webdriver.common.by import By  #Подключаем библиотеку By для поиска эллементов (input1 = browser.find_element(By.XPATH, ''))
+import math # Подключаем библиотеку для работы с математическими функциями (math)
 
-def calc(x):
-  return str(math.log(abs(12*math.sin(int(x)))))
+'''Создаем пользовательскую функцию calc'''
+def calc(x): # Создаем функцию с названием calc
+  return str(math.log(abs(12*math.sin(int(x))))) # Пишет в теле функции математическую формулу для вычислений, в которую подставляем значение переменной x.
 
+'''Запускаем веб-браузер и переходим по ссылке'''
+link = "http://suninjuly.github.io/get_attribute.html"
+browser = webdriver.Chrome()
+browser.get(link)
 
+x_element = browser.find_element(By.XPATH, "//img[@id='treasure']")
+x = x_element.get_attribute('valuex')
+x = int(x)
+y = calc(x)
 
-try: 
-    link = "http://suninjuly.github.io/get_attribute.html"
-    browser = webdriver.Chrome()
-    browser.get(link)
+input1 = browser.find_element(By.XPATH, "//input[@id='answer']")
+input1.send_keys(y)
+time.sleep(2)
 
-    # Ваш код, который заполняет обязательные поля
-    option1 = browser.find_element(By.ID, 'robotCheckbox')
-    option1.click()
-    
-    option2 = browser.find_element(By.ID, 'robotsRule')
-    option2.click()
+input2 = browser.find_element(By.XPATH, "//input[@id='robotCheckbox']")
+input2.click()
+time.sleep(2)
 
-    img1 = browser.find_element(By.ID, 'treasure')
-    img1_valuex = img1.get_attribute("valuex")
-    vluex = calc(img1_valuex)
+input3 = browser.find_element(By.XPATH, "//input[@id='robotsRule']")
+input3.click()
+time.sleep(2)
 
-    input1 = browser.find_element(By.ID, 'answer')
-    input1.send_keys(vluex)
+button = browser.find_element(By.XPATH, "//button[@type='submit']")
+button.click()
 
-
-    button = browser.find_element(By.CSS_SELECTOR, "button.btn")
-    button.click()
-
-
-    # Отправляем заполненную форму
-
-
-    # Проверяем, что смогли зарегистрироваться
-    # ждем загрузки страницы
-    time.sleep(3)
-
-
-finally:
-    # ожидание чтобы визуально оценить результаты прохождения скрипта
-    time.sleep(10)
-    # закрываем браузер после всех манипуляций
-    browser.quit()
+# закрываем браузер после всех манипуляций
+time.sleep(10)
+browser.quit()

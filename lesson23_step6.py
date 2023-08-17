@@ -1,47 +1,32 @@
+import math
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-import time
-import math
+
 
 def calc(x):
   return str(math.log(abs(12*math.sin(int(x)))))
 
-try: 
-    link = "http://suninjuly.github.io/redirect_accept.html"
-    browser = webdriver.Chrome()
-    browser.get(link)
+link = "http://suninjuly.github.io/redirect_accept.html"
+browser = webdriver.Chrome()
+browser.get(link)
+browser.maximize_window()
 
-    button = browser.find_element(By.CSS_SELECTOR, "button.trollface")
-    button.click()
+button1 = browser.find_element(By.XPATH, '/html/body/form/div/div/button')
+button1.click()
+time.sleep(2)
 
-    new_window = browser.window_handles[1]
-    browser.switch_to.window(new_window)
+browser.switch_to.window(browser.window_handles[1])
 
-    span1 = browser.find_element(By.ID, 'input_value')
-    span1 = span1.text
-    
-    x = calc(int(span1))
-    print(x)
-    
-    input1 = browser.find_element(By.ID, 'answer')
-    input1.send_keys(x)
-    
-    button = browser.find_element(By.CSS_SELECTOR, "button.btn")
-    button.click()
-    
-    
+x = browser.find_element(By.XPATH, '//*[@id="input_value"]')
+x = int(x.text)
+y = calc(x)
 
-    # Отправляем заполненную форму
+input1 = browser.find_element(By.XPATH, '//*[@id="answer"]')
+input1.send_keys(y)
 
+button2 = browser.find_element(By.XPATH, '/html/body/form/div/div/button')
+button2.click()
 
-    # Проверяем, что смогли зарегистрироваться
-    # ждем загрузки страницы
-    time.sleep(3)
-
-
-finally:
-    # ожидание чтобы визуально оценить результаты прохождения скрипта
-    time.sleep(10)
-    # закрываем браузер после всех манипуляций
-    browser.quit()
+time.sleep(240)
+browser.quit()

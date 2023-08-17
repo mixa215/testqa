@@ -1,52 +1,41 @@
+import math
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-import time
-import math
-
 def calc(x):
   return str(math.log(abs(12*math.sin(int(x)))))
 
+link = "http://suninjuly.github.io/execute_script.html"
+browser = webdriver.Chrome()
+browser.get(link)
+
+span1 = browser.find_element(By.XPATH, '//*[@id="input_value"]')
+x = int(span1.text)
+y = calc(x)
+
+input1 = browser.find_element(By.XPATH, '//*[@id="answer"]')
+input1.send_keys(y)
+
+input2 = browser.find_element(By.XPATH, '//*[@id="robotCheckbox"]')
+input2.click()
+
+input3 = browser.find_element(By.XPATH, '//*[@id="robotsRule"]')
+browser.execute_script("return arguments[0].scrollIntoView(true);", input3) # Прокрутка страницы к элементу input3
+input3.click()
+
+button = browser.find_element(By.XPATH, '/html/body/div[1]/form/button')
+button.click()
 
 
-try: 
-    link = "http://suninjuly.github.io/execute_script.html"
-    browser = webdriver.Chrome()
-    browser.get(link)
 
 
-    # Ваш код, который заполняет обязательные поля
-    span1 = browser.find_element(By.ID, 'input_value')
-    span1 = span1.text
-    
-    x = calc(int(span1))
-    print(x)
-
-    input1 = browser.find_element(By.ID, 'answer')
-    input1.send_keys(x)
-
-    option1 = browser.find_element(By.ID, 'robotCheckbox')
-    option1.click()
-
-    option2 = browser.find_element(By.ID, "robotsRule")
-    browser.execute_script("return arguments[0].scrollIntoView(true);", option2)
-    option2.click()
-    
-
-    button = browser.find_element(By.CSS_SELECTOR, "button.btn")
-    button.click()
 
 
-    # Отправляем заполненную форму
 
 
-    # Проверяем, что смогли зарегистрироваться
-    # ждем загрузки страницы
-    time.sleep(3)
+time.sleep(5)
+button.click()
 
-
-finally:
-    # ожидание чтобы визуально оценить результаты прохождения скрипта
-    time.sleep(10)
-    # закрываем браузер после всех манипуляций
-    browser.quit()
+# закрываем браузер после всех манипуляций
+time.sleep(3)
+browser.quit()
